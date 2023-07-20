@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Hooters Lucina Dev Blog</title>
+	<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+	<style>
+		html, body {
+			background-color: black;
+			color: white;
+			font-family: VT323;
+			font-size: 1.2em;
+		}
+		img {
+			width: 30%;
+			margin-left: 20px;
+		}
+		p {
+			width: 75%;
+			clear: left;
+			padding-top: 20px;
+		}
+		@media (min-width: 600px) and (max-width: 960px) {
+			img {
+				width: 40%;
+				margin: 10px 0 0 0;
+			}
+			p {
+				width: 100%;
+			}
+		}
+		@media (max-width: 600px) {
+			img {
+				width: 100%;
+				margin: 10px 0 0 0;
+			}
+			p {
+				width: 100%;
+			}
+		}
+	</style>
+</head>
+<body>
+	<h1>Hooters Lucina Dev Blog</h1>
+
+	<h2>Day 1 (July 4, 2023)</h2>
+	<img src="devblog_images/000.PNG">
+	<p>Making a game around Hooters Lucina was something I wanted to do since sometime in 2022. After the Fourth of July festivities, I decided to commit to working on the project. I had the idea brewing throughout the holiday weekend and thought of the core game concepts (objective, gameplay, design, etc.) at a high level. Late in the night, I started by making a very simple start menu using the p5.js library. All it had was the title, a Play button, and an About button. There was no functionality other than the button inverting colors when the mouse hovered over it. I planned to work on the project whenever I had free time.</p>
+
+	<hr/>
+
+	<h2>Day 2 (July 5, 2023</h2>
+	<img src="devblog_images/001.PNG">
+	<p>I added the About page, which could be opened when clicking on the About button in the main menu. The Back button would bring you back to the main menu. I wrote up a very simple description of how the game would be played. I hadn't finalized the details, but I knew I wanted the player to be able to tap food to collect orders, tap tables to deliver the food, and a patience meter for each customer. I thought about including a trash can which could be tapped to clear your tray of food that you picked up from the kitchen. This idea was later scrapped in favor of toggling buttons for food orders.</p>
+
+	<hr/>
+	
+	<h2>Day 3 (July 6, 2023)</h2>
+	<img src="devblog_images/002.PNG">
+	<img src="devblog_images/003.PNG">
+	<img src="devblog_images/layout.png">
+	<img src="devblog_images/004.PNG">
+	<p>I created a very simple Day menu screen which would display stats along with a Start Day button. The button had no functionality. This menu can be opened when clicking the Play button on the main menu. I came up with the concept of days of finite time. I initially planned on making the game an endless-type mode without the division of days. The money stat and star stat were ideated. I thought about starting the player at zero stars to work up to 5 stars. I decided instead to have them start at 1 star and switched over to star images instead of text. Since menus were done (albeit in a primitive state), I started to design what the game would look like, specifically the Day screen. I mocked up a quick wireframe of the gameplay. The box on the top would be the HUD which would display the current day, number of stars (scrapped), amount of money, and the time countdown for the day. The six boxes on the right would be the six food items: wings, fries, soda, burger, salad, and beer. I also thought about including fried pickles, onion rings, and cake. The food buttons needed to be big enough so that mobile users could easily and precisely tap them, and I wanted a simple progression of one item per upgrade. So, I settled on six food items with three starter food items. The box to the left of the food item boxes would be the kitchen window. The triangle is Lucina. The circles would be tables. I also thought about how many tables I'd want. I wanted to start with one table at one star, so that meant the endgame would have four tables at four stars before achieving five tables. The box at the bottom was supposed to be the trash can button that I mentioned in Day 2. It was repurposed to become the pause button. This was the day I spent the most time designing the gameplay. I also started the Day screen using my wireframe as a base. This was when I realized I wouldn't be able to fit the number of stars in the HUD.</p>
+
+	<hr/>
+	
+	<h2>Day 4 (July 7, 2023)</h2>
+	<img src="devblog_images/005.PNG">
+	<img src="devblog_images/006.PNG">
+	<img src="devblog_images/007.PNG">
+	<p>On this day, I focused on creating the food option buttons on the right. For now, I used text for indicating which button would correspond with which food item. When a button was click, it would invert its colors to indicate that it's been selected. I originally thought of having the buttons be hover buttons like the Play and About buttons on the main menu, but it behaved strangely on mobile, so I scrapped that and stuck with regular flat boxes. I then experimented with squares with rounded corners and circles. I liked the look of the rounded corners over sharp corners and circles.</p>
+
+	<hr/>
+	
+	<h2>Day 5 (July 8, 2023)</h2>
+	<img src="devblog_images/008.PNG">
+	<img src="devblog_images/009.PNG">
+	<p>I added tables on the left side. There would be four tables, and gave them a different color from a gray gradient so that I could tell them apart. Otherwise, four rectangles with the same color flush against each other in a column would like one big rectangle. I also created a blue rectangle as a placeholder for Lucina, and thus rectangle Lucina was born. Clicking a food item would move Lucina to the right side. Clicking a table would move Lucina next to the corresponding table. I added logic that Lucina could only move to a table if at least one food option was selected so that she could not show up to a table empty-handed.</p>
+
+	<hr/>
+	
+	<h2>Day 6 (July 9, 2023)</h2>
+	<img src="devblog_images/010.PNG">
+	<img src="devblog_images/011.PNG">
+	<p>This was a Sunday, so I had a lot of free time. I added logic to assign a random customer to an empty table after a timer expired. Customers were red, green, or blue boxes as placeholders. They would be placed on the left of the table. I then added the ordering system. Customers would randomly choose their order size N (number of items in an order). Then, a list of the available food options would be shuffled, and the first N food items would be their order. I made sure the order of the customer's order be in the same sequential order as the available food options order. So, that an order of wings, fries, and soda would always show up in the order of wings then fries then soda. I thought that otherwise (a random order of food items in the customer order) would be too difficult for the player. The order would show up next to the customer when they are assigned to a table. I then added the customer patience meter as well. It was placed under the order and would decrease in length as the timer counted down. It would also change colors from green to yellow to red as it got closer to expiration. I changed the colors of the food option button to match the color of the corresponding food as well. If the patience meter expired, then the customer immediately left the table. If the right order was delivered to the customer, the money counter would increase by a certain amount based on the number of items ordered and the remaining patience of the customer (tip).</p>
+
+	<hr/>
+	
+	<h2>Day 7 (July 11, 2023)</h2>
+	<img src="devblog_images/012.PNG">
+	<img src="devblog_images/013.PNG">
+	<p>No work was done on July 10, since I was both busy and burnt out from the long work session on July 9. When I finished Day 6, I knew the next feature would be the pause button. I still wanted a light day, so I quickly created a functioning pause button. The pause screen displayed player and game stats. I planned to add a music on/off button and sound effects on/off button on this screen once music and sounds were added, but I decided not to (because I was lazy).</p>
+
+	<hr/>
+	
+	<h2>Day 8 (July 12, 2023)</h2>
+	<img src="devblog_images/016.PNG">
+	<img src="devblog_images/014.PNG">
+	<img src="devblog_images/015.PNG">
+	<p>I added the upgrade button to the Day screen as well as its functionality. When the Hooters is upgraded, it gains a star, a new food item, and another table. I also added a little effect for when a customer leaves. When a customer leaves after being satisfied, the amount of money is displayed in green for some time. When a customer leaves after being angered (patience expires), a red anger icon is displayed instead.</p>
+
+	<hr/>
+	
+	<h2>Day 9 (July 13, 2023)</h2>
+	<img src="devblog_images/017.PNG">
+	<p>I added logic for handling the case when the day timer runs out. Previously, I had it set to 999 seconds for testing. Now, I set it to 100 seconds per day. When the day timer expires, then the day ends and the player is redirected to the Day screen. When the player clicks the Start Day button, the values are reset to start up a new day: deselect the food option buttons, clear out the tables and the customers, set the day timer back to 100 seconds, etc. With this, the game can now loop from Day screen to the game screen back to the Day screen. This meant that the game was now in a playable state. I played a run to test and make sure, and I was able to complete the game from start to finish. The game had no assets, so everything from Lucina to the tables to the customers to the background were just colored blocks. Since the game logic was essentially done, I released the beta on GitHub with the game available through GitHub Pages hosting. This was when people started playtesting and also started reporting that the game would reset on mobile. I figured out that mobile browsers usually have a feature where swiping down on the page would refresh the page and thus reset the game. Luckily, the game is tap-based rather than swipe-based, but it was something to keep in mind when you played the game on a smartphone or tablet.</p>
+
+	<hr/>
+	
+	<h2>Day 10 (July 14, 2023)</h2>
+	<img src="devblog_images/018.PNG">
+	<img src="devblog_images/019.PNG">
+	<p>I worked on the sprite for Lucina. Lucina had two poses: one for standing by the tables and one for standing by the kitchen. I replaced the blue rectangle with the sprite art and added logic for handling the "animation" of each pose. I initially wanted to just use a GIF and display that on the screen. But, GIFs would compress, and the quality of the image was horrible. I also hosted the images on imgur. Since imgur would also slightly compress the image files, I upscaled the 16 x 32 art to 1600 x 3200 to really ensure that any compression would still allow the image to look nice. This overkill turned out to be a bad decision down the road.</p>
+
+	<hr/>
+	
+	<h2>Day 11 (July 15, 2023)</h2>
+	<img src="devblog_images/020.PNG">
+	<img src="devblog_images/021.PNG">
+	<img src="devblog_images/022.PNG">
+	<img src="devblog_images/character_set1.png">
+	<p>I added sprite art for the food options and the tables. I added an effect that would slightly enlarge the food item sprite when it was selected so that it would look like it's popping out. Customers are still a colored box, and that was the next thing I would tackle. I had a list of 27 characters I planned to add. This ended up expanding to a list of 41 characters later. I selected these characters because they were my friends' favorite characters. The vast majority of them are Fire Emblem characters with one OC. I started with Mitama and created a template for customer art so that I could create future characters consistently and efficiently. I pumped out five more characters that night.</p>
+
+	<hr/>
+	
+	<h2>Day 12 (July 16, 2023)</h2>
+	<img src="devblog_images/character_set2.png">
+	<p>I spent the day making character sprite art for 24 characters. I knew I had to revisit some of them later, so I wanted to focus on finishing up the batch of characters first.</p>
+
+	<hr/>
+	
+	<h2>Day 13 (July 17, 2023)</h2>
+	<img src="devblog_images/character_set3.png">
+	<img src="devblog_images/023.PNG">
+	<p>I added 11 more characters and revisited 5 characters. I also added a secret chocolate milk sprite art that would be included somewhere in the game. I also made the background art. At this point, I realized that my decision to make the sprite art 1600 x 3200 was a terrible decision. Once 41 characters were loaded into the game, the huge image files were eating up tons of memory. I measured that the tab running the game was using up to 3 GB of RAM and the game would start to load very slowly. The game run fine with no issues, but the load time was very high (a couple of seconds) when it used to be instant.</p>
+
+	<hr/>
+	
+	<h2>Day 14 (July 18, 2023)</h2>
+	<img src="devblog_images/024.PNG">
+	<img src="devblog_images/025.PNG">
+	<img src="devblog_images/026.PNG">
+	<img src="devblog_images/027.PNG">
+	<p>I spent a couple of hours converting the sprites to 160 x 320 down from 1600 x 3200. This resulted in the game using up 0.3 GB instead (90% reduction) and load time was back to instant. I revisited the background art when I realized using vertical lines for the floor boards did not fit the isometric design. I added Anna who was the manager of the Hooters establishment. I added logic that she would show up when the player made enough money to purchase an upgrade the next day. I rewrote the About screen and added F!Morgan. F!Morgan is normally stacking tomes when you click on her, but I added a secret Exalt Morgan. I added a zoomed-in version of the Hooters background art to the main menu and added the Lucina sprite art. Clicking on Lucina would step her through the different animation sequences. The secret chocolate milk will also appear under special conditions. I then spent the rest of the night working on creating a cover song of Id (Purpose) on REAPER. I had to learn how MIDI worked and had to read actual sheet music to transpose the song to MIDI note-by-note. After two and a half hours, I finished up the song and dubbed it Id (Like to Order). Since I wanted the player to focus and enter the Mihaly flow state, I wanted to create a smooth-sounding song that wasn't distracting. It would also have to fit the tone and theme of the game, so it couldn't be some sort of epic song with trumpets, electric guitars, and crash cymbals.</p>
+
+	<hr/>
+	
+	<h2>Day 15 (July 19, 2023)</h2>
+	<img src="devblog_images/028.png">
+	<img src="devblog_images/end.png">
+	<p>I found some royalty-free sound effects on Freesound and added them to the game after altering them slightly. I added a click sound for clicking buttons including the food item buttons. I added a whoosh sound for Lucina moving between the tables and the kitchen to imply movement without actually having to animate Lucina moving. I added a positive sound effect for satisfied customers and a negative sound effect for angered customers. I added a cash register sound for purchasing an upgrade. I added a triumphant song for achieving five stars. With that and some parameter tweaks for difficulty scaling, the polish of the game was complete, and I published v1.0 for people to play.</p>
+	<p>I received feedback that the difficulty scaled well. Most people finished the game in 12 to 13 days on their first playthrough. One person hit 11 days. I played the game and hit 10 days. I think 9 days is theoretically possible with enough luck and skill (1 + 2 + 3 + 3 days for each star respectively). People tried to optimize the game and realized that M!Robin gave more money than other characters (he gives double the amount of money). They realized that purchasing the $200 second star upgrade after the first day was crucial for setting the pace. People were also finding the secrets as well.</p>
+	<p>Seeing the progress I made as I captured screenshots was rewarding. I made iterative changes and knew what I had to work on next at the end of each day. I usually worked a couple hours at a time. Near the end, I started to pour more hours into development so that I could wrap up sooner. Keeping a certain pace allowed me to keep the momentum without burning out (except after Day 6 when I worked several hours).</p>
+
+	<hr/>
+	
+	<h2>Progress of the Game Screen</h2>
+	<p>From wireframe design to the final product after multiple iterations</p>
+	<img src="devblog_images/layout.png">
+	<img src="devblog_images/007.PNG">
+	<img src="devblog_images/008.PNG">
+	<img src="devblog_images/011.PNG">
+	<img src="devblog_images/018.PNG">
+	<img src="devblog_images/021.PNG">
+	<img src="devblog_images/022.PNG">
+	<img src="devblog_images/028.PNG">
+
+</body>
+</html>
